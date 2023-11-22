@@ -26,8 +26,12 @@ public class JpaMain {
         try {
             //주문 객체 생성
             Order order = new Order();
-            //원하는 아이템 삽입 가능
-            order.addOrderItem(new OrderItem());
+            em.persist(order);
+
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
+
+            em.persist(orderItem);
 
             tx.commit();
         } catch (Exception e) {
